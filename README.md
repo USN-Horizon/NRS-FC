@@ -1,5 +1,5 @@
-# NotRocketScience - Flight Computer Verification
-This repository serves the purpose of hosting examples to test and verify functions of USN Horizon's student reasearched and developed flight computer. 
+# NotRocketScience - Flight Computer
+[Azure RTOS docs](https://github.com/eclipse-threadx/rtos-docs/tree/main)
 
 This repository based of Matej Blagšič's [repository](https://github.com/prtzl/stm32-cmake/tree/master) for cmake with stm32.
 

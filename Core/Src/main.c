@@ -119,6 +119,7 @@ int main(void)
   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
   HAL_Init();
 
+
   /* USER CODE BEGIN Init */
 
   /* USER CODE END Init */
@@ -136,7 +137,7 @@ int main(void)
   MX_ADC1_Init();
   MX_CAN1_Init();
   MX_CRC_Init();
-  MX_ETH_Init();
+ // MX_ETH_Init();
   MX_I2C1_Init();
   MX_RNG_Init();
   MX_SPI2_Init();
@@ -144,8 +145,9 @@ int main(void)
   MX_USART1_UART_Init();
   MX_USART2_UART_Init();
   MX_USART3_UART_Init();
+
   /* USER CODE BEGIN 2 */
-  init();
+  //init();
   /* USER CODE END 2 */
 
   MX_ThreadX_Init();
