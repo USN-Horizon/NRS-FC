@@ -1,10 +1,10 @@
 {
     "version": "0.2.0",
-    "projectName": "NRS-Flight-Computer-Verification",
+    "projectName": "NRS-Flight-Computer",
     "configurations": [
         {
             "cwd": "${workspaceFolder}",
-            "executable": "${workspaceRoot}/build/NRS_FC-Verification.elf",
+            "executable": "${workspaceRoot}/build/NRS_FC.elf",
             "name": "Launch with PyOCD",
             "request": "launch",
             "type": "cortex-debug",
@@ -15,7 +15,7 @@
         },
         {
             "cwd": "${workspaceFolder}",
-            "executable": "${workspaceRoot}/build/NRS_FC-Verification.elf",
+            "executable": "${workspaceRoot}/build/NRS_FC.elf",
             "name": "Attach with PyOCD",
             "request": "attach",
             "type": "cortex-debug",
@@ -27,7 +27,7 @@
         {
             "name": "STlink launch",
             "cwd": "${workspaceRoot}",
-            "executable": "${workspaceRoot}/build/NRS_FC-Verification.elf",
+            "executable": "${workspaceRoot}/build/NRS_FC.elf",
             "request": "launch",
             "type": "cortex-debug",
             "servertype": "stlink",
@@ -41,7 +41,7 @@
         {
             "name": "STlink attach",
             "cwd": "${workspaceRoot}",
-            "executable": "${workspaceRoot}/build/NRS_FC-Verification.elf",
+            "executable": "${workspaceRoot}/build/NRS_FC.elf",
             "request": "attach",
             "type": "cortex-debug",
             "servertype": "openocd",

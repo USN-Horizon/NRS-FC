@@ -1,20 +1,18 @@
 #include "LedOne.hpp"
-#include <main.h>
-#include <tx_port.h>
-#include <tx_api.h>
+#include "cmsis_os.h"
 #include <Gpio.hpp>
 #include "NRS-FC-BoardDefinitions.hpp"
 
-void LedOne(ULONG input)
+void LedOneEntry(void* argument)
 {
     namespace NRS = NotRocketScienceFlightComputer;
     GPIO_InitTypeDef config = NRS::outputConfig;
-    HAM::Gpio pin = HAM::Gpio{NRS::Servo1, config};
+    HAM::Gpio pin = HAM::Gpio{NRS::Servo1, NRS::outputConfig};
     while (1)
     {
       pin.Toggle();
       // HAL_GPIO_TogglePin(GPIOE, GPIO_PIN_11);
-      tx_thread_sleep(10);
+      osDelay(500);
       /* code */
     }
 }

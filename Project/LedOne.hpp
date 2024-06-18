@@ -2,12 +2,7 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-    #include <tx_port.h>
-    void LedOne(ULONG input);
+    void LedOneEntry(void* argument);
 #ifdef __cplusplus
 }
 #endif
-// extern "C++"
-// {
-
-// }

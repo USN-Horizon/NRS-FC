@@ -57,18 +57,23 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
-#define BarometerInterrupt_Pin GPIO_PIN_2
-#define BarometerInterrupt_GPIO_Port GPIOE
-#define GyroInterrupt1_Pin GPIO_PIN_3
-#define GyroInterrupt1_GPIO_Port GPIOE
-#define GyroInterrupt2_Pin GPIO_PIN_4
-#define GyroInterrupt2_GPIO_Port GPIOE
-#define AccelerometerInterrupt1_Pin GPIO_PIN_5
-#define AccelerometerInterrupt1_GPIO_Port GPIOE
-#define AccelerometerInterrupt2_Pin GPIO_PIN_6
-#define AccelerometerInterrupt2_GPIO_Port GPIOE
-#define TemperatureAlert_Pin GPIO_PIN_13
-#define TemperatureAlert_GPIO_Port GPIOC
+#define Barometer_Interrupt_Pin GPIO_PIN_2
+#define Barometer_Interrupt_GPIO_Port GPIOE
+#define Barometer_Interrupt_EXTI_IRQn EXTI2_IRQn
+#define Gyro_Interrupt_1_Pin GPIO_PIN_3
+#define Gyro_Interrupt_1_GPIO_Port GPIOE
+#define Gyro_Interrupt_1_EXTI_IRQn EXTI3_IRQn
+#define Gyro_Interrupt_2_Pin GPIO_PIN_4
+#define Gyro_Interrupt_2_GPIO_Port GPIOE
+#define Gyro_Interrupt_2_EXTI_IRQn EXTI4_IRQn
+#define Accelerometer_Interrupt_1_Pin GPIO_PIN_5
+#define Accelerometer_Interrupt_1_GPIO_Port GPIOE
+#define Accelerometer_Interrupt_1_EXTI_IRQn EXTI9_5_IRQn
+#define Accelerometer_Interrupt_2_Pin GPIO_PIN_6
+#define Accelerometer_Interrupt_2_GPIO_Port GPIOE
+#define Accelerometer_Interrupt_2_EXTI_IRQn EXTI9_5_IRQn
+#define Temperature_Alert_Pin GPIO_PIN_13
+#define Temperature_Alert_GPIO_Port GPIOC
 #define Boot1_Pin GPIO_PIN_2
 #define Boot1_GPIO_Port GPIOB
 #define Servo2_Pin GPIO_PIN_9

@@ -46,15 +46,10 @@ set(PROJECT_INCLUDE_DIRECTORIES
     ${PROJECT_DIR})
 
 
-set(AZURE_INCLUDE_DIRECTORIES
-    ${CMAKE_CURRENT_SOURCE_DIR}/Middlewares/ST/threadx/common/inc
-    ${CMAKE_CURRENT_SOURCE_DIR}/Middlewares/ST/threadx/ports/cortex_m4/gnu/inc
-    ${CMAKE_CURRENT_SOURCE_DIR}/Middlewares/ST/filex/common/inc
-    ${CMAKE_CURRENT_SOURCE_DIR}/Middlewares/ST/filex/ports/generic/inc
-    ${CMAKE_CURRENT_SOURCE_DIR}/Middlewares/ST/netxduo/common/inc
-    ${CMAKE_CURRENT_SOURCE_DIR}/FileX/App
-    ${CMAKE_CURRENT_SOURCE_DIR}/NetXDuo/App
-    ${CMAKE_CURRENT_SOURCE_DIR}/AZURE_RTOS/App
+set(RTOS_INCLUDE_DIRECTORIES
+    ${CMAKE_CURRENT_SOURCE_DIR}/Middlewares/Third_Party/FreeRTOS/Source/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2
+    ${CMAKE_CURRENT_SOURCE_DIR}/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F
     )
 
 set(HAM_INCLUDE_DIRECTORIES
@@ -66,6 +61,10 @@ set(HAM_INCLUDE_DIRECTORIES
     ${CMAKE_CURRENT_SOURCE_DIR}/HAM/I2C
     ${CMAKE_CURRENT_SOURCE_DIR}/HAM/SHT30
     ${CMAKE_CURRENT_SOURCE_DIR}/HAM/Common
+    ${CMAKE_CURRENT_SOURCE_DIR}/HAM/Barometer
+    ${CMAKE_CURRENT_SOURCE_DIR}/HAM/Sensor
+    ${CMAKE_CURRENT_SOURCE_DIR}/HAM/IMU/
+    ${CMAKE_CURRENT_SOURCE_DIR}/HAM/IMU/BMI088
     )
 
 
@@ -81,14 +80,11 @@ file(GLOB_RECURSE PROJECT_SOURCES CONFIGURE_DEPENDS
 file(GLOB_RECURSE HAM_SOURCES CONFIGURE_DEPENDS
     ${CMAKE_CURRENT_SOURCE_DIR}/HAM/*.cpp)
 
-file(GLOB_RECURSE AZURE_SOURCES CONFIGURE_DEPENDS
+file(GLOB_RECURSE RTOS_SOURCES CONFIGURE_DEPENDS
     ${CMAKE_CURRENT_SOURCE_DIR}/Core/Src/*.S
-    ${CMAKE_CURRENT_SOURCE_DIR}/Middlewares/ST/threadx/common/src/*.c
-    ${CMAKE_CURRENT_SOURCE_DIR}/Middlewares/ST/threadx/ports/cortex_m4/gnu/src/*.S
-    ${CMAKE_CURRENT_SOURCE_DIR}/Middlewares/ST/netxduo/common/src/*.c
-    ${CMAKE_CURRENT_SOURCE_DIR}/Middlewares/ST/filex/common/src*.c
-    ${CMAKE_CURRENT_SOURCE_DIR}/AZURE_RTOS/App/*.c
-    ${CMAKE_CURRENT_SOURCE_DIR}/FileX/App/*.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/Middlewares/Third_Party/FreeRTOS/Source/*.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2*.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/Middlewares/Third_Party/FreeRTOS/Source/portable/*.c
     # ${CMAKE_CURRENT_SOURCE_DIR}/ports/cortex_m4/gnu/src/*.cpp
     )
     
@@ -97,7 +93,7 @@ add_compile_options($<$<COMPILE_LANGUAGE:ASM>:-x$<SEMICOLON>assembler-with-cpp>)
 add_executable(${EXECUTABLE}
     ${STARTUP_SCRIPT}
     ${STM32CUBEMX_SOURCES}
-    ${AZURE_SOURCES} 
+    ${RTOS_SOURCES} 
     ${HAM_SOURCES} 
     ${PROJECT_SOURCES}
     )
@@ -111,7 +107,7 @@ target_include_directories(${EXECUTABLE} SYSTEM PRIVATE
     ${STM32CUBEMX_INCLUDE_DIRECTORIES})
     
 target_include_directories(${EXECUTABLE} SYSTEM PRIVATE
-    ${AZURE_INCLUDE_DIRECTORIES})
+    ${RTOS_INCLUDE_DIRECTORIES})
 
 target_include_directories(${EXECUTABLE} PRIVATE
     ${HAM_INCLUDE_DIRECTORIES})
@@ -138,6 +134,7 @@ ${CPU_PARAMETERS}
         -Wold-style-cast
         -Wuseless-cast
         -Wsuggest-override>
+        # -Wstd
     $<$<CONFIG:Debug>:-Og -g3 -ggdb>
     $<$<CONFIG:Release>:-Og -g0>)
 

@@ -17,8 +17,8 @@
   */
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
-#include "app_threadx.h"
 #include "main.h"
+#include "cmsis_os.h"
 #include "adc.h"
 #include "can.h"
 #include "crc.h"
@@ -58,6 +58,7 @@
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
+void MX_FREERTOS_Init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -119,7 +120,6 @@ int main(void)
   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
   HAL_Init();
 
-
   /* USER CODE BEGIN Init */
 
   /* USER CODE END Init */
@@ -137,7 +137,7 @@ int main(void)
   MX_ADC1_Init();
   MX_CAN1_Init();
   MX_CRC_Init();
- // MX_ETH_Init();
+  MX_ETH_Init();
   MX_I2C1_Init();
   MX_RNG_Init();
   MX_SPI2_Init();
@@ -145,12 +145,18 @@ int main(void)
   MX_USART1_UART_Init();
   MX_USART2_UART_Init();
   MX_USART3_UART_Init();
-
   /* USER CODE BEGIN 2 */
   //init();
   /* USER CODE END 2 */
 
-  MX_ThreadX_Init();
+  /* Init scheduler */
+  osKernelInitialize();
+
+  /* Call init function for freertos objects (in freertos.c) */
+  MX_FREERTOS_Init();
+
+  /* Start scheduler */
+  osKernelStart();
 
   /* We should never get here as control is now taken by the scheduler */
   /* Infinite loop */
