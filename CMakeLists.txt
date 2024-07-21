@@ -82,9 +82,9 @@ file(GLOB_RECURSE HAM_SOURCES CONFIGURE_DEPENDS
 
 file(GLOB_RECURSE RTOS_SOURCES CONFIGURE_DEPENDS
     ${CMAKE_CURRENT_SOURCE_DIR}/Core/Src/*.S
-    ${CMAKE_CURRENT_SOURCE_DIR}/Middlewares/Third_Party/FreeRTOS/Source/*.c
-    ${CMAKE_CURRENT_SOURCE_DIR}/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2*.c
-    ${CMAKE_CURRENT_SOURCE_DIR}/Middlewares/Third_Party/FreeRTOS/Source/portable/*.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/Middlewares/Third_Party/FreeRTOS/*.c
+    # ${CMAKE_CURRENT_SOURCE_DIR}/Middlewares/Third_Party/FreeRTOS/Source/portable/*.c
+    # ${CMAKE_CURRENT_SOURCE_DIR}/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2*.c
     # ${CMAKE_CURRENT_SOURCE_DIR}/ports/cortex_m4/gnu/src/*.cpp
     )
     
@@ -148,7 +148,8 @@ target_link_options(${EXECUTABLE} PRIVATE
     -lm
     -lstdc++
     -Wl,--end-group
-    -Wl,--print-memory-usage)
+    -Wl,--print-memory-usage
+    -u _printf_float )
 
 # The last command can take a couple of seconds on larger project, useful for debugging
 add_custom_command(TARGET ${EXECUTABLE} POST_BUILD
