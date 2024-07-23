@@ -4,14 +4,14 @@
 #include "NRS-FC-BoardDefinitions.hpp"
 void LedTwoEntry(void* argument)
 {
-    namespace NRS = NotRocketScienceFlightComputer;
-    HAM::Gpio pin = HAM::Gpio{NRS::Servo2, NRS::outputConfig};
-    // HAM::Gpio pin = HAM::Gpio{GPIOE, GPIO_PIN_9};
+    // namespace NRS = NotRocketScienceFlightComputer;
+    // HAM::Gpio pin = HAM::Gpio{NRS::Servo2, NRS::outputConfig};
+    // // HAM::Gpio pin = HAM::Gpio{GPIOE, GPIO_PIN_9};
 
-    while (1)
-    {
-      pin.Toggle();
-      osDelay(1000);
-      /* code */
-    }
+    // while (1)
+    // {
+    //   pin.Toggle();
+    //   osDelay(1000);
+    //   /* code */
+    // }
 }
