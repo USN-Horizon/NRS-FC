@@ -5,7 +5,7 @@ This repository based of Matej Blagšič's [repository](https://github.com/prtzl
 
 ## Clone
 ```shell
-git clone --recurse-submodules -j8 git@github.com:USN-Horizon/NRS-Flight-Computer-Verification.git
+git clone --recurse-submodules -j8 git@github.com:USN-Horizon/NRS-FC.git
 ```
 > **_NOTE:_** Recurse submodules makes sure to include the contents of [HAM](https://github.com/USN-Horizon/HAM).
 
