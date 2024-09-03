@@ -22,12 +22,12 @@
 #include "task.h"
 #include "main.h"
 #include "cmsis_os.h"
-#include <LedOne.hpp>
-#include <LedTwo.hpp>
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "LedOne.hpp"
+#include "LedTwo.hpp"
+#include "SensorTask.hpp"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -66,11 +66,16 @@ const osThreadAttr_t LedTwo_attributes = {
 
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN FunctionPrototypes */
-
+osThreadId_t SensorTaskHandle;
+const osThreadAttr_t SensorTask_attributes = {
+  .name = "SensorTask",
+  .stack_size = 128 * 4,
+  .priority = (osPriority_t) osPriorityLow,
+};
 /* USER CODE END FunctionPrototypes */
 
 void LedOneEntry(void *argument);
-void LedTwoEntry(void *argument);
+extern void LedTwoEntry(void *argument);
 
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
 
@@ -109,6 +114,7 @@ void MX_FREERTOS_Init(void) {
 
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
+  SensorTaskHandle = osThreadNew(SensorTask, NULL, &SensorTask_attributes);
   /* USER CODE END RTOS_THREADS */
 
   /* USER CODE BEGIN RTOS_EVENTS */
@@ -118,22 +124,17 @@ void MX_FREERTOS_Init(void) {
 }
 
 /* USER CODE BEGIN Header_LedOneEntry */
-/**
-  * @brief  Function implementing the LedOne thread.
-  * @param  argument: Not used
-  * @retval None
-  */
 /* USER CODE END Header_LedOneEntry */
-
-
-/* USER CODE BEGIN Header_LedTwoEntry */
-/**
-* @brief Function implementing the LedTwo thread.
-* @param argument: Not used
-* @retval None
-*/
-/* USER CODE END Header_LedTwoEntry */
-
+__weak void LedOneEntry(void *argument)
+{
+  /* USER CODE BEGIN LedOneEntry */
+  /* Infinite loop */
+  for(;;)
+  {
+    osDelay(1);
+  }
+  /* USER CODE END LedOneEntry */
+}
 
 /* Private application code --------------------------------------------------*/
 /* USER CODE BEGIN Application */
